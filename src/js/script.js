@@ -84,7 +84,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
       //console.log('thisProduct.form', thisProduct.form);
       //console.log('thisProduct.formInputs', thisProduct.formInputs);
       //console.log('thisProduct.cartButton', thisProduct.cartButton);
@@ -160,10 +160,17 @@
         for(let optionId in param.options){
           console.log('optionId: ',optionId);
           /* save the element in param.options with key optionId as const option */
+          //save consts option and images
           const option = param.options[optionId];
           console.log('option: ',option);
-          /* START IF: if option is selected and option is not default */
+
           const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+
+          const images = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+          console.log('images: ', images);
+
+          /* START IF: if option is selected and option is not default */
+
           if (optionSelected  && !option.default){
             /* add price of option to variable price */
             price += option.price;
@@ -173,18 +180,43 @@
           /* START ELSE IF: if option is not selected and option is default */
           else if (! optionSelected && option.default){
           /* deduct price of option from price */
-          price -= option.price;
-          console.log('price - option.price: ', price);
+            price -= option.price;
+            console.log('price - option.price: ', price);
           /* END ELSE IF: if option is not selected and option is default */
           }
+          //start IF option is selected
+          if(optionSelected){
+            //start loop for every image
+            for(let image of images ){
+              console.log('image if optionSelected: ', image);
+              //add class active to image
+              image.classList.add(classNames.menuProduct.imageVisible);
+              console.log('image + class active: ', image);
+              //end loop
+            }
+          //end if
+          }
+          //start else (when option is not selected)
+          else {
+            //start loop fot every image
+            for(let image of images){
+              console.log('image not selected', image);
+              //delete class activeProduct form image
+              image.classList.remove(classNames.menuProduct.imageVisible);
+              console.log('image - class active: ', image);
+            //end loop
+            }
+          //end ELSE
+        }
+
         /* END LOOP: for each optionId in param.options */
         }
       /* END LOOP: for each paramId in thisProduct.data.params */
       }
-    /* set the contents of thisProduct.priceElem to be the value of variable price */
-    thisProduct.priceElem.innerHTML= price;
+      /* set the contents of thisProduct.priceElem to be the value of variable price */
+      thisProduct.priceElem.innerHTML= price;
     }
-}
+  }
   const app = {
     initMenu : function(){
       const thisApp = this;
