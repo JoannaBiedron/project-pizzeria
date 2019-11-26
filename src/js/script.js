@@ -136,62 +136,56 @@
         event.preventDefault();
         thisProduct.processOrder();
       });
-      console.log('initOrderForm');
+      //console.log('initOrderForm');
     }
 
     processOrder(){
       const thisProduct = this;
-      console.log('processOrder');
-
+      //console.log('processOrder');
       /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData',formData);
+      //console.log('formData',formData);
       /* set variable price to equal thisProduct.data.price */
       let price = thisProduct.data.price; //thisProduct.data.price
-      console.log('price: ', price);
+      c//onsole.log('price: ', price);
       /* START LOOP: for each paramId in thisProduct.data.params */
       for(let paramId  in thisProduct.data.params){
-        console.log('paramId: ', paramId);
-
+        //console.log('paramId: ', paramId);
         /* save the element in thisProduct.data.params with key paramId as const param */
         const param = thisProduct.data.params[paramId];
-        console.log('param:',param);
+        //console.log('param:',param);
         /* START LOOP: for each optionId in param.options */
         for(let optionId in param.options){
-          console.log('optionId: ',optionId);
+          //console.log('optionId: ',optionId);
           /* save the element in param.options with key optionId as const option */
           //save consts option and images
           const option = param.options[optionId];
-          console.log('option: ',option);
-
+          //console.log('option: ',option);
           const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
-
           const images = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
-          console.log('images: ', images);
-
+          //console.log('images: ', images);
           /* START IF: if option is selected and option is not default */
-
           if (optionSelected  && !option.default){
             /* add price of option to variable price */
             price += option.price;
-            console.log('price + option.price:',price );
+            //console.log('price + option.price:',price );
           /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
           else if (! optionSelected && option.default){
           /* deduct price of option from price */
             price -= option.price;
-            console.log('price - option.price: ', price);
+            //console.log('price - option.price: ', price);
           /* END ELSE IF: if option is not selected and option is default */
           }
           //start IF option is selected
           if(optionSelected){
             //start loop for every image
             for(let image of images ){
-              console.log('image if optionSelected: ', image);
+              //console.log('image if optionSelected: ', image);
               //add class active to image
               image.classList.add(classNames.menuProduct.imageVisible);
-              console.log('image + class active: ', image);
+              //console.log('image + class active: ', image);
               //end loop
             }
           //end if
@@ -200,15 +194,14 @@
           else {
             //start loop fot every image
             for(let image of images){
-              console.log('image not selected', image);
+              //console.log('image not selected', image);
               //delete class activeProduct form image
               image.classList.remove(classNames.menuProduct.imageVisible);
-              console.log('image - class active: ', image);
+              //console.log('image - class active: ', image);
             //end loop
             }
           //end ELSE
           }
-
         /* END LOOP: for each optionId in param.options */
         }
       /* END LOOP: for each paramId in thisProduct.data.params */
