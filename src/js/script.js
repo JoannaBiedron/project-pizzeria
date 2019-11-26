@@ -207,7 +207,7 @@
             //end loop
             }
           //end ELSE
-        }
+          }
 
         /* END LOOP: for each optionId in param.options */
         }
@@ -217,6 +217,16 @@
       thisProduct.priceElem.innerHTML= price;
     }
   }
+
+  class AmountWidget{
+    constructor(element){
+      const thisWidget = this;
+
+      console.log('AmountWidget: ', AmountWidget);
+      console.log('constructor arguments:', element);
+    }
+  }
+
   const app = {
     initMenu : function(){
       const thisApp = this;
