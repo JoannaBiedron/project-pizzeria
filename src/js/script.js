@@ -189,7 +189,7 @@
           //console.log('option: ',option);
           const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
           const images = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
-          //console.log('images: ', images);
+          console.log('images: ', images);
           /* START IF: if option is selected and option is not default */
           if (optionSelected  && !option.default){
             /* add price of option to variable price */
@@ -382,10 +382,12 @@
       thisCart.subtotalPrice = 0;
 
       for(let product of thisCart.products){
-        thisCart.subtotalPrice += product.price;
+
+        thisCart.subtotalPrice += product.priceSingle; //razy jego liczba sztuk *amount
         thisCart.totalNumber += product.amount;
       }
       thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+      console.log(' subtotalPrice', thisCart.subtotalPrice);
       console.log('thisCart.totalNumber', thisCart.totalNumber);
       console.log('thisCart.totalPrice', thisCart.totalPrice);
       console.log('thisCart.deliveryFee', thisCart.deliveryFee);
