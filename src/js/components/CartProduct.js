@@ -64,10 +64,15 @@ class CartProduct {
   }
   getData(){
     const thisCartProduct = this;
-    thisCartProduct.id;
-    thisCartProduct.mount;
-    thisCartProduct.price;
-    thisCartProduct.priceSingle;
+
+    const productInfo = {
+    id: thisCartProduct.id,
+    amount: thisCartProduct.amount,
+    price: thisCartProduct.price,
+    priceSingle: thisCartProduct.priceSingle,
+    params: thisCartProduct.params,
+    };
+    return productInfo;
   }
 }
 export default CartProduct;
