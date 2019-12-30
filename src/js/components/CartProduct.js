@@ -1,4 +1,4 @@
-import{select,} from './settings.js';
+import{select,} from './js/settings.js';
 import AmountWidget from './AmountWidget.js';
 
 class CartProduct {
@@ -66,11 +66,11 @@ class CartProduct {
     const thisCartProduct = this;
 
     const productInfo = {
-    id: thisCartProduct.id,
-    amount: thisCartProduct.amount,
-    price: thisCartProduct.price,
-    priceSingle: thisCartProduct.priceSingle,
-    params: thisCartProduct.params,
+      id: thisCartProduct.id,
+      amount: thisCartProduct.amount,
+      price: thisCartProduct.price,
+      priceSingle: thisCartProduct.priceSingle,
+      params: thisCartProduct.params,
     };
     return productInfo;
   }
